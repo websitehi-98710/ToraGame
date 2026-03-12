@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tora Isme</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0015, #120025, #1a0035);
+      color: #00f0ff;
+      min-height: 100vh;
+      padding: 20px 15px;
+      line-height: 1.5;
+      background-attachment: fixed;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header { 
+      text-align: center; 
+      margin-bottom: 3rem; 
+      padding: 2rem 0; 
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3.8rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, #00f0ff, #ff00aa, #9d00ff, #00f0ff, #ff00aa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 100%;
+      animation: neonShimmer 4s linear infinite;
+      text-shadow: 
+        0 0 15px #00f0ff90,
+        0 0 30px #ff00aa70,
+        0 0 50px #9d00ff50;
+      letter-spacing: 1.5px;
+    }
+
+    @keyframes neonShimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .subtitle { 
+      font-size: 1.4rem; 
+      color: #a78bfa; 
+      margin-top: 0.8rem; 
+      text-shadow: 0 0 12px #00f0ff60;
+      letter-spacing: 0.8px;
+    }
+
+    .category {
+      background: linear-gradient(145deg, rgba(20, 0, 40, 0.8), rgba(40, 0, 80, 0.6));
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 3rem;
+      backdrop-filter: blur(12px);
+      border: 2px solid #00f0ff80;
+      box-shadow: 
+        0 12px 50px rgba(0,0,0,0.8),
+        inset 0 0 30px rgba(0,240,255,0.15),
+        0 0 40px rgba(157,0,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: radial-gradient(circle at 40% 30%, rgba(0,240,255,0.22) 0%, transparent 65%);
+      pointer-events: none;
+      animation: neonPulse 10s ease-in-out infinite;
+    }
+
+    @keyframes neonPulse {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(1.2); }
+    }
+
+    .category h2 {
+      font-size: 2.6rem;
+      color: #ff00aa;
+      margin-bottom: 1.8rem;
+      border-bottom: 4px solid #00f0ff;
+      padding-bottom: 1rem;
+      text-align: left;
+      text-shadow: 0 0 18px #00f0ff90;
+      background: linear-gradient(90deg, #00f0ff, #ff00aa, #9d00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 180% 100%;
+      animation: neonTextFlow 5s linear infinite;
+    }
+
+    @keyframes neonTextFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 180% 50%; }
+    }
+
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem 1.4rem;
+      list-style: none;
+    }
+
+    .game-item {
+      background: linear-gradient(135deg, rgba(30, 0, 60, 0.85), rgba(60, 0, 100, 0.65));
+      padding: 1.3rem 1.6rem;
+      border-radius: 14px;
+      border: 1.5px solid #00f0ff60;
+      transition: all 0.4s ease;
+      font-size: 1.1rem;
+      color: #e0f7ff;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-item::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(transparent, rgba(0,240,255,0.3), transparent);
+      transition: all 0.7s ease;
+      pointer-events: none;
+    }
+
+    .game-item:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: #ff00aa;
+      box-shadow: 
+        0 25px 60px rgba(157,0,255,0.45),
+        inset 0 0 35px rgba(0,240,255,0.25);
+      color: #ffffff;
+    }
+
+    .game-item:hover::after {
+      top: 100%;
+    }
+
+    .highlight { 
+      color: #00ffff; 
+      font-weight: 700; 
+      text-shadow: 0 0 14px #00f0ffaa;
+    }
+
+    .emoji { 
+      margin-right: 0.7rem; 
+      font-size: 1.5rem; 
+      filter: drop-shadow(0 0 8px #ff00aaaa);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 5rem;
+      padding: 2rem 0;
+      color: #a78bfa;
+      font-size: 1.1rem;
+      border-top: 2px solid #00f0ff80;
+      text-shadow: 0 0 12px #00f0ff70;
+      letter-spacing: 1.2px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.8rem; }
+      .game-list { grid-template-columns: 1fr; }
+      .category { padding: 1.6rem; }
+      .category h2 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>Tora Isme</h1>
+      <div class="subtitle"></div>
+    </header>
+
+    <div id="categoriesContainer"></div>
+
+    <footer>
+      
+    </footer>
+
+  </div>
+
+  <script>
+    const categories = {
+      "Game": [
+"Break a Lucky Block",
+"Escape Tsunami for Brainrots",
+"Survive LAVA for Brainrots",
+"Save Brainrot from Lava",
+"Escape Police for Brainrots",
+"Dig Legends",
+"+1 Skill Point Legends",
+"Blow Up and Fall",
+"Steal From Brainrots",
+"Climb for Brainrots",
+"Be a YouTuber",
+"Find Who Slapped",
+"Escape Quicksand for Brainrots",
+"Leaf Collector",
+"Trap Run",
+"Draw a Raft and Set Sail",
+"Escape Guards to Steal Brainrots",
+"Escape Getting Crushed for Brainrots",
+"Dive for Brainrots",
+"Fish for Lucky Blocks",
+"Reel a Brainrot",
+"Baddie Jumping",
+"Swing Obby for Brainrots",
+"Fly for Brainrots",
+"Launch Your Rocket",
+"Climb to Infinity",
+      ]
+    };
+
+    function renderAllCategories() {
+      const container = document.getElementById("categoriesContainer");
+      container.innerHTML = '';
+
+      Object.keys(categories).forEach(catName => {
+        const section = document.createElement("section");
+        section.className = "category";
+
+        const h2 = document.createElement("h2");
+        h2.textContent = catName + ":";
+        section.appendChild(h2);
+
+        const ul = document.createElement("ul");
+        ul.className = "game-list";
+
+        categories[catName].forEach(game => {
+          const li = document.createElement("li");
+          li.className = "game-item";
+
+          let content = game;
+
+          const emojiMatch = content.match(/^([\u{1F300}-\u{1F5FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}])/u);
+          if (emojiMatch) {
+            content = `<span class="emoji">${emojiMatch[0]}</span> ${content.slice(emojiMatch[0].length).trim()}`;
+          }
+
+          if (content.includes("+1 ") || content.includes("[UPD]") || content.includes("Speed") || content.includes("TROLL")) {
+            content = `<span class="highlight">${content}</span>`;
+          }
+
+          li.innerHTML = content;
+          ul.appendChild(li);
+        });
+
+        section.appendChild(ul);
+        container.appendChild(section);
+      });
+    }
+
+    renderAllCategories();
+  </script>
+
+</body>
+</html>
